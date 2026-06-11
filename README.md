@@ -162,9 +162,9 @@ python run_experiments.py \
 | Preset | Algorithms | Scenarios | Packets | Runs | Description |
 |--------|-----------|-----------|---------|------|-------------|
 | `quick` | sapex | thundering_herd | 1k | 1 | Smoke test (fastest) |
-| `number_of_packets` | all 5 | all 3 | 1k, 10k, 100k | 45 | Compare packet count impact |
-| `sapex_lambda_div` | all 5 | all 3 | 2k | 24 | SAPEX diversity parameter sweep |
-| `sapex_t_round` | all 5 | all 3 | 2k | 21 | SAPEX time-round parameter sweep |
+| `number_of_packets` | all 5 | all 3 | 1k, 10k, 100k, 1M | 60 | Compare packet count impact |
+| `sapex_lambda_div` | all 5 | all 3 | 100k | 24 | SAPEX diversity parameter sweep |
+| `sapex_t_round` | all 5 | all 3 | 100k | 21 | SAPEX time-round parameter sweep |
 | `full_sweep` | all 5 | all 3 | all 5 | 6480 | Full parameter sweep (⚠️ very long) |
 
 View all options:
@@ -246,7 +246,7 @@ python run_experiments.py --preset number_of_packets --plots-dir /path/to/plots 
 # Suppress verbose output
 python run_experiments.py --preset quick --quiet --workers 1
 
-# Increase per-experiment timeout (default: 600 seconds)
+# Increase per-experiment timeout (default: 1800 seconds)
 python run_experiments.py --preset number_of_packets --timeout-sec 1200 --workers 8
 ```
 
@@ -402,7 +402,7 @@ Preset details:
 - Algorithms: all comparison algorithms
 - Topology: `sciera_large`
 - Scenarios: all built-in stress scenarios
-- Packets: `1000`, `10000`, `100000`
+- Packets: `1000`, `10000`, `100000`, `1000000`
 - `t_round_ms`: `2000`
 - `cooldown_ms`: `5000`
 - `lambda_div`: `0.5`

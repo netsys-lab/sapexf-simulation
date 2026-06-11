@@ -167,7 +167,6 @@ def plot_per_link_fairness(df: pd.DataFrame, output_dir: Path) -> Path:
     fig.savefig(output_file, dpi=150)
     plt.close(fig)
     return output_file
-    return output_file
 
 
 def _plot_sapex_parameter_comparison(

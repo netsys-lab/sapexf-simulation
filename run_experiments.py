@@ -58,7 +58,7 @@ SCENARIOS = {
 
 # ---- Parameter sets ----
 # Network related
-NUM_PACKETS_OPTIONS = [1000, 2000, 10000, 100000]
+NUM_PACKETS_OPTIONS = [1000, 2000, 10000, 100000, 1000000]
 PACKET_SIZE_BYTES = 1500  # Fixed per spec
 
 # Algorithm related
@@ -94,7 +94,7 @@ EXPERIMENT_SETS = {
         "algorithms": ALGORITHMS,
         "topologies": ["sciera_large"],
         "scenarios": list(SCENARIOS.keys()),
-        "num_packets": [2000],
+        "num_packets": [100000],
         "t_round_ms": [2000],
         "cooldown_ms": [5000],
         "lambda_div": LAMBDA_DIV_OPTIONS,
@@ -107,7 +107,7 @@ EXPERIMENT_SETS = {
         "algorithms": ALGORITHMS,
         "topologies": ["sciera_large"],
         "scenarios": list(SCENARIOS.keys()),
-        "num_packets": [2000],
+        "num_packets": [100000],
         "t_round_ms": T_ROUND_OPTIONS_MS,
         "cooldown_ms": [5000],
         "lambda_div": [0.5],
@@ -116,11 +116,11 @@ EXPERIMENT_SETS = {
         "baseline_t_round_ms": 2000,
     },
     "number_of_packets": {
-        "description": "Compare all algorithms at 1k, 10k, and 100k packet counts",
+        "description": "Compare all algorithms at 1k, 10k, 100k, and 1M packet counts",
         "algorithms": ALGORITHMS,
         "topologies": ["sciera_large"],
         "scenarios": list(SCENARIOS.keys()),
-        "num_packets": [1000, 10000, 100000],
+        "num_packets": [1000, 10000, 100000, 1000000],
         "t_round_ms": [2000],
         "cooldown_ms": [5000],
         "lambda_div": [0.5],
@@ -150,7 +150,7 @@ class ExperimentRunner:
         output_base_dir="results",
         dry_run=False,
         verbose=True,
-        timeout_sec=600,
+        timeout_sec=1800,
         max_workers=1,
         run_label=None,
     ):
@@ -692,8 +692,8 @@ Examples:
                         help="List all available options and exit")
     parser.add_argument("--quiet", action="store_true",
                         help="Suppress verbose output")
-    parser.add_argument("--timeout-sec", type=int, default=600,
-                        help="Per-experiment timeout in seconds (default: 600)")
+    parser.add_argument("--timeout-sec", type=int, default=1800,
+                        help="Per-experiment timeout in seconds (default: 1800)")
     parser.add_argument("--workers", type=int, default=1,
                         help="Number of parallel experiment workers (default: 1)")
     parser.add_argument("--no-plot", action="store_true",
